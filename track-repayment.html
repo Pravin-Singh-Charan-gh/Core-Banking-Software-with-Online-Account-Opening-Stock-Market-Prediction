@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Loan Repayment - FINTEX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+        .repayment-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 20px;
+            background: #f0f4f7;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .repayment-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #0077cc;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+
+    <!-- Navbar -->
+    <nav id="nav">
+        <a href="index.html"><img id="logo" src="images/logo.png" alt="logo"></a>
+        <div id="right-content">
+            <ul id="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li id="login-dropdown">
+                    <span id="login-btn">Login ▼</span>
+                    <ul class="dropdown" id="dropdown-menu">
+                        <li><a href="customer-login.html">Customer Login</a></li>
+                        <li><a href="staff-login.html">Staff Login</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+    <div class="repayment-container">
+        <h2>Your Loan Repayment Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Loan ID</th>
+                    <th>Loan Amount</th>
+                    <th>Tenure</th>
+                    <th>EMI (Approx)</th>
+                    <th>Amount Repaid</th>
+                    <th>Pending Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LN1</td>
+                    <td>₹2,00,000</td>
+                    <td>5 years</td>
+                    <td>₹3,600/month</td>
+                    <td>₹80,000</td>
+                    <td>₹1,20,000</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>LN2</td>
+                    <td>₹3,50,000</td>
+                    <td>7 years</td>
+                    <td>₹5,400/month</td>
+                    <td>₹1,50,000</td>
+                    <td>₹2,00,000</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>LN3</td>
+                    <td>₹1,00,000</td>
+                    <td>3 years</td>
+                    <td>₹2,800/month</td>
+                    <td>₹1,00,000</td>
+                    <td>₹0</td>
+                    <td>Closed</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://x.com" target="_blank">X</a></li>
+                    <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Head Office</h3>
+                <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+                <p>Contact Number: +91 4564637282</p>
+            </div>
+        </div>
+        <div class="privacy-policy">
+            <a href="policy.html">Privacy & Policy</a>
+        </div>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

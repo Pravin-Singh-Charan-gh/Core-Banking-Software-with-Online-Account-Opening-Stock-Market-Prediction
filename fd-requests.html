@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fixed Deposit Requests</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+    }
+
+    #container {
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: #004aad;
+      font-size: 2.5rem;
+    }
+
+    .fd-card {
+      background: white;
+      padding: 25px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .fd-card:hover {
+      background: #eef3fa;
+      transform: scale(1.02);
+    }
+
+    .fd-details p {
+      margin: 8px 0;
+      font-size: 17px;
+    }
+
+    .fd-actions {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .accept-btn, .reject-btn, .delete-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .accept-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .accept-btn:hover {
+      background-color: #1e7e34;
+    }
+
+    .reject-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .reject-btn:hover {
+      background-color: #bd2130;
+    }
+
+    .delete-btn {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    .delete-btn:hover {
+      background-color: #e0a800;
+    }
+
+    /* Navbar & Footer */
+    #nav {
+      background-color: #2c005f;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #list {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    #list li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #footer {
+      background-color: #111827;
+      color: white;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-container div {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="container">
+
+  <!-- Navbar -->
+  <nav id="nav">
+    <div>
+      <img src="images/logo.png" alt="Logo" height="40px">
+    </div>
+    <ul id="list">
+      <li><a href="staff.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="staff-login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <h1>Fixed Deposit Requests</h1>
+
+  <div id="fd-requests">
+    <!-- Fixed Deposit Requests added dynamically -->
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div>
+        <h3>Navigation</h3>
+        <p>Dashboard<br>About Us<br>Contact</p>
+      </div>
+      <div>
+        <h3>Head Office</h3>
+        <p>1234 Finance Street, Mumbai, India<br>Contact: +91 4564637282</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>YouTube, Instagram, Facebook</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const fdRequests = [
+    { name: "Anil Kumar", email: "anil.kumar@gmail.com", phone: "9876543210", amount: "₹50,000", term: "1 year", interestRate: "7.5%" },
+    { name: "Ritika Sharma", email: "ritika.sharma@gmail.com", phone: "9123456780", amount: "₹1,00,000", term: "2 years", interestRate: "8%" },
+    { name: "Manoj Gupta", email: "manoj.gupta@gmail.com", phone: "9012345678", amount: "₹25,000", term: "3 years", interestRate: "6.8%" },
+    { name: "Neha Arora", email: "neha.arora@gmail.com", phone: "9324567810", amount: "₹75,000", term: "5 years", interestRate: "7%" },
+    { name: "Vishal Mehta", email: "vishal.mehta@gmail.com", phone: "9876512340", amount: "₹2,00,000", term: "5 years", interestRate: "7.2%" },
+    { name: "Anil Kumar", email: "anil.kumar@gmail.com", phone: "9876543210", amount: "₹50,000", term: "1 year", interestRate: "7.5%" },
+    { name: "Ritika Sharma", email: "ritika.sharma@gmail.com", phone: "9123456780", amount: "₹1,00,000", term: "2 years", interestRate: "8%" },
+    { name: "Manoj Gupta", email: "manoj.gupta@gmail.com", phone: "9012345678", amount: "₹25,000", term: "3 years", interestRate: "6.8%" },
+    { name: "Neha Arora", email: "neha.arora@gmail.com", phone: "9324567810", amount: "₹75,000", term: "5 years", interestRate: "7%" },
+    { name: "Vishal Mehta", email: "vishal.mehta@gmail.com", phone: "9876512340", amount: "₹2,00,000", term: "5 years", interestRate: "7.2%" },
+  ];
+
+  const requestsContainer = document.getElementById('fd-requests');
+
+  fdRequests.forEach((req, index) => {
+    const card = document.createElement('div');
+    card.className = 'fd-card';
+    card.id = `card-${index}`;
+    card.innerHTML = `
+      <div class="fd-details">
+        <p><strong>Name:</strong> ${req.name}</p>
+        <p><strong>Email:</strong> ${req.email}</p>
+        <p><strong>Phone:</strong> ${req.phone}</p>
+        <p><strong>Deposit Amount:</strong> ${req.amount}</p>
+        <p><strong>Term:</strong> ${req.term}</p>
+        <p><strong>Interest Rate:</strong> ${req.interestRate}</p>
+      </div>
+      <div class="fd-actions">
+        <button class="accept-btn" onclick="handleDecision('${req.email}', 'accepted')">Accept</button>
+        <button class="reject-btn" onclick="handleDecision('${req.email}', 'rejected')">Reject</button>
+        <button class="delete-btn" onclick="deleteRequest('card-${index}')">Delete Request</button>
+      </div>
+    `;
+    requestsContainer.appendChild(card);
+  });
+
+  function handleDecision(email, decision) {
+    alert(`A mail has been sent to ${email} regarding the ${decision.toUpperCase()} decision.`);
+  }
+
+  function deleteRequest(cardId) {
+    const card = document.getElementById(cardId);
+    if (card) {
+      card.remove();
+      alert('Request deleted successfully!');
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <title>Stock Market Prediction - Fintex Bank</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Scroll animation library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <style>
+    .stock-section {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    }
+    .stock-container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0px 8px 24px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+    }
+    .stock-container h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      color: #003366;
+    }
+    select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    #predictionResult {
+      margin-top: 30px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #00695c;
+      min-height: 50px;
+    }
+
+    .view-history-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #0077cc;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+.view-history-btn:hover {
+  background-color: #005999;
+}
+  </style>
+</head>
+<body>
+    <div id="container">
+        <nav id="nav">
+            <a href="index.html"><img id="logo" src="images/logo.png" alt="logo"></a>
+            <div id="right-content">
+              <ul id="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li id="login-dropdown">
+                  <span id="login-btn">Login ▼</span>
+                  <ul class="dropdown" id="dropdown-menu">
+                    <li><a href="customer-login.html">Customer Login</a></li>
+                    <li><a href="staff-login.html">Staff Login</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+
+
+
+
+
+          <div class="stock-section" data-aos="fade-up">
+            <div class="stock-container">
+              <h1>Predict Stock Market Trends 📈</h1>
+              <form id="predictForm">
+                <select id="stock" name="stock" required>
+                  <option value="">-- Select a Company --</option>
+                  <option value="TCS">TCS</option>
+                  <option value="Reliance Industries">Reliance Industries</option>
+                  <option value="Infosys">Infosys</option>
+                  <option value="HDFC Bank">HDFC Bank</option>
+                  <option value="ICICI Bank">ICICI Bank</option>
+                  <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+                  <option value="Axis Bank">Axis Bank</option>
+                  <option value="State Bank of India">State Bank of India</option>
+                  <option value="Wipro">Wipro</option>
+                  <option value="HCL Technologies">HCL Technologies</option>
+                  <option value="Bharti Airtel">Bharti Airtel</option>
+                  <option value="Maruti Suzuki">Maruti Suzuki</option>
+                  <option value="Larsen & Toubro">Larsen & Toubro</option>
+                  <option value="Asian Paints">Asian Paints</option>
+                  <option value="Bajaj Finance">Bajaj Finance</option>
+                  <option value="Adani Green">Adani Green</option>
+                  <option value="Adani Enterprises">Adani Enterprises</option>
+                  <option value="Nestle India">Nestle India</option>
+                  <option value="ITC Ltd">ITC Ltd</option>
+                  <option value="Sun Pharma">Sun Pharma</option>
+                  <option value="Hindustan Unilever">Hindustan Unilever</option>
+                  <option value="Tata Motors">Tata Motors</option>
+                  <option value="Power Grid Corporation">Power Grid Corporation</option>
+                  <option value="JSW Steel">JSW Steel</option>
+                  <option value="UltraTech Cement">UltraTech Cement</option>
+                  <option value="Tata Steel">Tata Steel</option>
+                  <option value="Mahindra & Mahindra">Mahindra & Mahindra</option>
+                  <option value="NTPC Limited">NTPC Limited</option>
+                  <option value="Grasim Industries">Grasim Industries</option>
+                  <option value="Dr. Reddy's Laboratories">Dr. Reddy's Laboratories</option>
+                  <option value="Cipla">Cipla</option>
+                  <option value="Bharat Petroleum">Bharat Petroleum</option>
+                  <option value="Eicher Motors">Eicher Motors</option>
+                  <option value="HDFC Life Insurance">HDFC Life Insurance</option>
+                  <option value="IndusInd Bank">IndusInd Bank</option>
+                  <option value="SBI Life Insurance">SBI Life Insurance</option>
+                  <option value="Divi's Laboratories">Divi's Laboratories</option>
+                  <option value="Tata Consumer Products">Tata Consumer Products</option>
+                  <option value="Britannia Industries">Britannia Industries</option>
+                  <option value="Pidilite Industries">Pidilite Industries</option>
+                  <option value="Hero MotoCorp">Hero MotoCorp</option>
+                  <option value="Ambuja Cements">Ambuja Cements</option>
+                  <option value="Hindalco Industries">Hindalco Industries</option>
+                  <option value="Tech Mahindra">Tech Mahindra</option>
+                  <option value="Shree Cement">Shree Cement</option>
+                  <option value="Apollo Hospitals">Apollo Hospitals</option>
+                  <option value="ONGC">ONGC</option>
+                  <option value="Zomato">Zomato</option>
+                  <option value="Paytm">Paytm</option>
+                </select>
+          
+                <button type="submit">Predict</button>
+          
+                <div id="predictionResult"></div>
+                <a href="history.html" class="view-history-btn" data-aos="fade-up" data-aos-delay="200">📜 View Prediction History</a>
+
+              </form>
+            </div>
+          </div>
+
+
+
+          
+
+
+          <footer id="footer">
+            <div class="footer-container">
+              <!-- Column 1: Navigation Links -->
+              <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="careers.html">Careers</a></li>
+                </ul>
+              </div>
+          
+              <!-- Column 2: Social Media -->
+              <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                  <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                  <li><a href="https://x.com" target="_blank">X</a></li>
+                  <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                  <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
+                </ul>
+              </div>
+          
+              <!-- Column 3: Address and Contact -->
+              <div class="footer-column">
+                <h3>Head Office</h3>
+                <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+                <p>Contact Number: +91 4564637282</p>
+              </div>
+            </div>
+          
+            <!-- Privacy & Policy Link -->
+            <div class="privacy-policy">
+              <a href="policy.html">Privacy & Policy</a>
+            </div>
+          </footer>
+        
+          
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+<script>
+  AOS.init();
+
+  document.getElementById('predictForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const stock = document.getElementById('stock').value;
+  
+  if (!stock) {
+    document.getElementById('predictionResult').innerText = "Please select a company.";
+    return;
+  }
+
+  const movement = Math.random() > 0.5 ? 'rise 📈' : 'fall 📉';
+  const percentage = (Math.random() * 5 + 1).toFixed(2);
+
+  const message = `📊 Prediction for ${stock}: Expected to ${movement} by ${percentage}% within the next week.`;
+  document.getElementById('predictionResult').innerText = message;
+
+  // Save to local storage
+  const history = JSON.parse(localStorage.getItem('predictionHistory')) || [];
+  history.push({
+    company: stock,
+    prediction: `Expected to ${movement} by ${percentage}%`,
+    date: new Date().toLocaleString()
+  });
+  localStorage.setItem('predictionHistory', JSON.stringify(history));
+});
+
+</script>
+
+</body>
+</html>

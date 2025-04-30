@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Queries</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+    }
+
+    #container {
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: #004aad;
+      font-size: 2.5rem;
+    }
+
+    .query-card {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .query-card:hover {
+      transform: scale(1.02);
+      background: #eef3fa;
+    }
+
+    /* Modal */
+    #query-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 12px;
+      width: 50%;
+      position: relative;
+      animation: fadeIn 0.3s;
+      max-height: 90%;
+      overflow-y: auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-header {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #004aad;
+      text-align: center;
+    }
+
+    .modal-details p {
+      margin: 10px 0;
+      font-size: 17px;
+    }
+
+    .modal-message {
+      background: #f0f4ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-size: 17px;
+    }
+
+    .reply-section {
+      margin-top: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      font-size: 16px;
+      resize: none;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    .send-btn {
+      background-color: #0077ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .send-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      font-weight: bold;
+      color: red;
+      cursor: pointer;
+    }
+
+    /* Navbar & Footer */
+    #nav {
+      background-color: #2c005f;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #list {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    #list li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #footer {
+      background-color: #111827;
+      color: white;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-container div {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="container">
+
+  <!-- Navbar -->
+  <nav id="nav">
+    <div>
+      <img src="images/logo.png" alt="Logo" height="40px">
+    </div>
+    <ul id="list">
+      <li><a href="staff.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="staff-login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <h1>Customer Queries</h1>
+
+  <!-- Queries List -->
+  <div id="queries-list">
+    <!-- JS will inject query cards here -->
+  </div>
+
+  <!-- Modal -->
+  <div id="query-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-header">Query Details</div>
+      <div class="modal-details" id="modal-details">
+        <!-- Details inserted dynamically -->
+      </div>
+
+      <!-- Reply section -->
+      <div class="reply-section">
+        <h3 style="margin-bottom: 10px;">Reply to Customer:</h3>
+        <textarea id="reply-message" placeholder="Type your reply here..."></textarea>
+        <button class="send-btn" onclick="sendReply()">Send Reply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div>
+        <h3>Navigation</h3>
+        <p>Dashboard<br>About Us<br>Contact</p>
+      </div>
+      <div>
+        <h3>Head Office</h3>
+        <p>1234 Finance Street, Mumbai, India<br>Contact: +91 4564637282</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>YouTube, Instagram, Facebook</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const dummyQueries = [
+    { name: "Aman Verma", email: "aman@gmail.com", phone: "9876543210", subject: "Loan Inquiry", message: "I want to know about your personal loan rates." },
+    { name: "Neha Sinha", email: "neha@gmail.com", phone: "9123456780", subject: "Credit Card Issue", message: "My credit card got blocked. Need help!" },
+    { name: "Rahul Gupta", email: "rahul@gmail.com", phone: "9012345678", subject: "Account Opening", message: "How can I open a savings account online?" },
+    { name: "Pooja Mehta", email: "pooja@gmail.com", phone: "9324567810", subject: "Net Banking Problem", message: "I'm unable to login to net banking." },
+    { name: "Karan Singh", email: "karan@gmail.com", phone: "9876512340", subject: "Cheque Book Request", message: "I need a new cheque book issued." },
+    { name: "Simran Kaur", email: "simran@gmail.com", phone: "9123784560", subject: "Loan EMI Query", message: "Please provide my EMI schedule." },
+    { name: "Anil Joshi", email: "anil@gmail.com", phone: "9871236540", subject: "Fixed Deposit", message: "What are current FD interest rates?" },
+    { name: "Sneha Patel", email: "sneha@gmail.com", phone: "9012567830", subject: "Transaction Failed", message: "My payment failed, but money debited." },
+    { name: "Ravi Kumar", email: "ravi@gmail.com", phone: "9834567120", subject: "Update Mobile Number", message: "How do I update my mobile number?" },
+    { name: "Divya Sharma", email: "divya@gmail.com", phone: "9782346510", subject: "Close Account", message: "I want to close my account." },
+  ];
+
+  let currentQuery = null;
+
+  const queriesList = document.getElementById('queries-list');
+
+  dummyQueries.forEach(query => {
+    const card = document.createElement('div');
+    card.className = 'query-card';
+    card.innerHTML = `
+      <h3>${query.name}</h3>
+      <p><strong>Subject:</strong> ${query.subject}</p>
+    `;
+    card.onclick = () => openModal(query);
+    queriesList.appendChild(card);
+  });
+
+  function openModal(query) {
+    currentQuery = query;
+    document.getElementById('modal-details').innerHTML = `
+      <p><strong>Name:</strong> ${query.name}</p>
+      <p><strong>Email:</strong> ${query.email}</p>
+      <p><strong>Phone:</strong> ${query.phone}</p>
+      <p><strong>Subject:</strong> ${query.subject}</p>
+      <div class="modal-message"><strong>Message:</strong><br>${query.message}</div>
+    `;
+    document.getElementById('query-modal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('query-modal').style.display = 'none';
+    document.getElementById('reply-message').value = '';
+  }
+
+  function sendReply() {
+    const replyMessage = document.getElementById('reply-message').value.trim();
+    if (!replyMessage) {
+      alert('Please enter your reply message!');
+      return;
+    }
+    alert(`Reply sent to ${currentQuery.email}:\n\n"${replyMessage}"`);
+    closeModal();
+  }
+</script>
+
+</body>
+</html>

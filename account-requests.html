@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account Opening Requests</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    #container {
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #004aad;
+      margin-top: 20px;
+    }
+
+    .request-card {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .request-card:hover {
+      transform: scale(1.02);
+      background: #f5f5f5;
+    }
+
+    /* Modal Styling */
+    #request-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 10px;
+      width: 50%;
+      position: relative;
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .modal-header {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #004aad;
+    }
+
+    .modal-details p {
+      margin: 8px 0;
+    }
+
+    .modal-actions {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .accept-btn, .reject-btn {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+    }
+
+    .accept-btn {
+      background-color: green;
+    }
+
+    .reject-btn {
+      background-color: red;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: red;
+    }
+
+    /* Navbar & Footer Sample Styling */
+    #nav {
+      background-color: #2c005f;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #list {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    #list li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    #footer {
+      background-color: #111827;
+      color: white;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    
+    <!-- Navbar -->
+    <nav id="nav">
+      <div>
+        <img src="images/logo.png" alt="Logo" height="40px">
+      </div>
+      <ul id="list">
+        <li><a href="staff.html">Dashboard</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="staff-login.html">Logout</a></li>
+      </ul>
+    </nav>
+
+    <h1>Account Opening Requests</h1>
+
+    <!-- Requests List -->
+    <div id="requests-list">
+      <!-- JS will inject request cards here -->
+    </div>
+
+    <!-- Modal -->
+    <div id="request-modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div class="modal-header">Request Details</div>
+        <div class="modal-details" id="modal-details">
+          <!-- Details inserted dynamically -->
+        </div>
+        <div class="modal-actions">
+          <button class="accept-btn" onclick="acceptRequest()">Accept</button>
+          <button class="reject-btn" onclick="rejectRequest()">Reject</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="footer-container">
+        <div>
+          <h3>Navigation</h3>
+          <p>Dashboard<br>About Us<br>Contact</p>
+        </div>
+        <div>
+          <h3>Head Office</h3>
+          <p>1234 Finance Street, Mumbai, India<br>Contact: +91 4564637282</p>
+        </div>
+        <div>
+          <h3>Follow Us</h3>
+          <p>YouTube, Instagram, Facebook</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const dummyRequests = [
+      {
+        name: "John Doe", mobile: "9876543210", email: "john@example.com", age: 30,
+        father: "Mr. Doe", marital: "Unmarried", address: "Mumbai", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile1.png"
+      },
+      {
+        name: "Priya Sharma", mobile: "8765432109", email: "priya@example.com", age: 28,
+        father: "Mr. Sharma", marital: "Married", address: "Delhi", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile2.png"
+      },
+      {
+        name: "Raesh Rastogi", mobile: "9876543210", email: "john@example.com", age: 30,
+        father: "Mr. Doe", marital: "Unmarried", address: "Mumbai", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile1.png"
+      },
+      {
+        name: "Mohit Sharma", mobile: "8765432109", email: "priya@example.com", age: 28,
+        father: "Mr. Sharma", marital: "Married", address: "Delhi", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile2.png"
+      },
+      {
+        name: "Lokesh Khanna", mobile: "9876543210", email: "john@example.com", age: 30,
+        father: "Mr. Doe", marital: "Unmarried", address: "Mumbai", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile1.png"
+      },
+      {
+        name: "Neesha Verma", mobile: "8765432109", email: "priya@example.com", age: 28,
+        father: "Mr. Sharma", marital: "Married", address: "Delhi", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile2.png"
+      },
+      {
+        name: "Pritam Singh", mobile: "9876543210", email: "john@example.com", age: 30,
+        father: "Mr. Doe", marital: "Unmarried", address: "Mumbai", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile1.png"
+      },
+      {
+        name: "Jitesh Sharma", mobile: "8765432109", email: "priya@example.com", age: 28,
+        father: "Mr. Sharma", marital: "Married", address: "Delhi", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile2.png"
+      },
+      {
+        name: "Shyam Kumar", mobile: "9876543210", email: "john@example.com", age: 30,
+        father: "Mr. Doe", marital: "Unmarried", address: "Mumbai", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile1.png"
+      },
+      {
+        name: "Lucky Singh", mobile: "8765432109", email: "priya@example.com", age: 28,
+        father: "Mr. Sharma", marital: "Married", address: "Delhi", panCard: "images/pan.png", aadharCard: "images/aadhar.png", photo: "images/profile2.png"
+      }
+      
+ 
+    ];
+
+    let currentRequest = null;
+
+    const listContainer = document.getElementById('requests-list');
+
+    dummyRequests.forEach((req, index) => {
+      const card = document.createElement('div');
+      card.className = "request-card";
+      card.innerHTML = `
+        <h3>${req.name}</h3>
+        <p><strong>Email:</strong> ${req.email}</p>
+        <p><strong>Mobile:</strong> ${req.mobile}</p>
+      `;
+      card.onclick = () => openModal(req);
+      listContainer.appendChild(card);
+    });
+
+    function openModal(request) {
+      currentRequest = request;
+      document.getElementById('modal-details').innerHTML = `
+        <p><strong>Name:</strong> ${request.name}</p>
+        <p><strong>Email:</strong> ${request.email}</p>
+        <p><strong>Mobile:</strong> ${request.mobile}</p>
+        <p><strong>Age:</strong> ${request.age}</p>
+        <p><strong>Father's Name:</strong> ${request.father}</p>
+        <p><strong>Marital Status:</strong> ${request.marital}</p>
+        <p><strong>Address:</strong> ${request.address}</p>
+        <p><strong>PAN Card:</strong> <img src="${request.panCard}" width="100"></p>
+        <p><strong>Aadhar Card:</strong> <img src="${request.aadharCard}" width="100"></p>
+        <p><strong>Photo:</strong> <img src="${request.photo}" width="100"></p>
+      `;
+      document.getElementById('request-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('request-modal').style.display = 'none';
+    }
+
+    function acceptRequest() {
+      alert(`Account Opening Request for ${currentRequest.name} Accepted.\nLogin credentials sent to ${currentRequest.email}`);
+      closeModal();
+    }
+
+    function rejectRequest() {
+      alert(`Account Opening Request for ${currentRequest.name} Rejected.\nRejection mail sent to ${currentRequest.email}`);
+      closeModal();
+    }
+  </script>
+</body>
+</html>

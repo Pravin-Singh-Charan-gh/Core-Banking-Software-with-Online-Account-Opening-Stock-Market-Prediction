@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transfer Money | Fintex Bank</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    .transfer-container {
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #f5f5f5;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .transfer-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .transfer-container input, .transfer-container button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .transfer-container button {
+      background-color: #0a3d62;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .transfer-container button:hover {
+      background-color: #0652DD;
+    }
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    
+    <nav id="nav">
+      <a href="index.html"><img id="logo" src="images/logo.png" alt="logo"></a>
+      <div id="right-content">
+        <ul id="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="transfer-container">
+      <h2>Transfer Money</h2>
+      <form id="transferForm">
+        <input type="text" id="accountNumber" placeholder="Recipient Account Number" required>
+        <input type="text" id="ifscCode" placeholder="Recipient IFSC Code" required>
+        <input type="number" id="amount" placeholder="Amount to Transfer (₹)" required>
+        <button type="submit">Transfer</button>
+      </form>
+      <div id="message"></div>
+    </div>
+
+    <footer id="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Follow Us</h3>
+          <ul>
+            <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+            <li><a href="https://x.com" target="_blank">X</a></li>
+            <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+            <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Head Office</h3>
+          <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+          <p>Contact Number: +91 4564637282</p>
+        </div>
+      </div>
+      <div class="privacy-policy">
+        <a href="policy.html">Privacy & Policy</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    let currentBalance = 275500; // ₹2,75,500 initial balance
+
+    document.getElementById('transferForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const amount = parseFloat(document.getElementById('amount').value);
+
+      if (isNaN(amount) || amount <= 0) {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').textContent = "Please enter a valid amount.";
+        return;
+      }
+
+      if (amount > currentBalance) {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').textContent = "Insufficient Balance!";
+      } else {
+        currentBalance -= amount;
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').textContent = `Transfer Successful! Remaining Balance: ₹${currentBalance.toLocaleString('en-IN')}`;
+        
+        // Clear form after successful transfer
+        document.getElementById('transferForm').reset();
+      }
+    });
+  </script>
+
+</body>
+</html>

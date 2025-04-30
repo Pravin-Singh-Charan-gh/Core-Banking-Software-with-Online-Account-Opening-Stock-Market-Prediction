@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fintex Bank - Staff Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+     <style>
+        /* Staff Welcome Section */
+#staff-welcome {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+}
+
+#staff-welcome h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+#staff-welcome p {
+    font-size: 20px;
+}
+
+/* Staff Actions */
+#staff-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.action-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.action-card h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.action-card button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.action-card button:hover {
+    background-color: #0056b3;
+}
+
+     </style>
+    <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="nav">
+        <a href="index.html"><img id="logo" src="images/logo.png" alt="Fintex Bank Logo"></a>
+        <div id="right-content">
+            <ul id="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="staff-login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section id="staff-welcome">
+        <h1>Welcome, Staff Member!</h1>
+        <p>Manage all customer requests and bank operations from here.</p>
+    </section>
+
+    <!-- Staff Options Section -->
+    <section id="staff-actions">
+        <div class="action-card">
+            <h2>Account Opening Requests</h2>
+            <button onclick="location.href='account-requests.html'">View Requests</button>
+        </div>
+
+        <div class="action-card">
+            <h2>Customer Queries</h2>
+            <button onclick="location.href='queries.html'">View Queries</button>
+        </div>
+
+        <div class="action-card">
+            <h2>SIP Requests</h2>
+            <button onclick="location.href='sip-requests.html'">View SIP Requests</button>
+        </div>
+
+        <div class="action-card">
+            <h2>Mutual Fund Requests</h2>
+            <button onclick="location.href='mf-requests.html'">View MF Requests</button>
+        </div>
+
+        <div class="action-card">
+            <h2>Fixed Deposit Requests</h2>
+            <button onclick="location.href='fd-requests.html'">View FD Requests</button>
+        </div>
+
+        <div class="action-card">
+            <h2>Add Customer</h2>
+            <button onclick="location.href='add-customer.html'">Add Customer</button>
+        </div>
+
+        <div class="action-card">
+            <h2>Delete Customer</h2>
+            <button onclick="location.href='delete-customers.html'">Delete Customer</button>
+        </div>
+
+        <div class="action-card">
+            <h2>Loan Applications</h2>
+            <button onclick="location.href='loan-requests.html'">View Loan Requests</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://x.com" target="_blank">X</a></li>
+                    <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Head Office</h3>
+                <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+                <p>Contact Number: +91 4564637282</p>
+            </div>
+        </div>
+
+        <div class="privacy-policy">
+            <a href="policy.html">Privacy & Policy</a>
+        </div>
+    </footer>
+
+</body>
+</html>

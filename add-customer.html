@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Customer</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+    }
+
+    #container {
+      width: 60%;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #004aad;
+      font-size: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .form-group input[type="file"] {
+      padding: 5px;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background-color: #218838;
+    }
+
+    /* Navbar & Footer */
+    #nav {
+      background-color: #2c005f;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #list {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    #list li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #footer {
+      background-color: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav id="nav">
+    <div>
+      <img src="images/logo.png" alt="Logo" height="40px">
+    </div>
+    <ul id="list">
+      <li><a href="staff.html">Dashboard</a></li>
+      <li><a href="add-customer.html">Add Customer</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div id="container">
+    <h1>Add Customer</h1>
+
+    <form id="add-customer-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input type="text" id="mobile" name="mobile" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required>
+      </div>
+
+      <div class="form-group">
+        <label for="father-name">Father's Name</label>
+        <input type="text" id="father-name" name="father-name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="marital-status">Marital Status</label>
+        <select id="marital-status" name="marital-status" required>
+          <option value="married">Married</option>
+          <option value="unmarried">Unmarried</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pan-card">PAN Card (Upload Photo)</label>
+        <input type="file" id="pan-card" name="pan-card" accept="image/*" required>
+      </div>
+
+      <div class="form-group">
+        <label for="aadhar-card">Aadhar Card (Upload Photo)</label>
+        <input type="file" id="aadhar-card" name="aadhar-card" accept="image/*" required>
+      </div>
+
+      <div class="form-group">
+        <label for="photo">Profile Photo (Upload Photo)</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Create Account</button>
+      </div>
+    </form>
+  </div>
+
+  <footer id="footer">
+    <p>&copy; 2025 FINTEX | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    document.getElementById('add-customer-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Form data
+      const customerData = new FormData(event.target);
+
+      // Send data to server (use AJAX or Fetch API for actual email sending in a real app)
+      const email = customerData.get('email');
+      
+      // Dummy email sending (this would be handled by the backend in a real application)
+      alert(`A confirmation email has been sent to ${email} regarding the successful creation of the account.`);
+
+      // Optionally, reset form after submission
+      event.target.reset();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Requests</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+    }
+
+    #container {
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: #004aad;
+      font-size: 2.5rem;
+    }
+
+    .loan-card {
+      background: white;
+      padding: 25px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .loan-card:hover {
+      background: #eef3fa;
+      transform: scale(1.02);
+    }
+
+    .loan-details p {
+      margin: 8px 0;
+      font-size: 17px;
+    }
+
+    .loan-actions {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .accept-btn, .reject-btn, .delete-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .accept-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .accept-btn:hover {
+      background-color: #1e7e34;
+    }
+
+    .reject-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .reject-btn:hover {
+      background-color: #bd2130;
+    }
+
+    .delete-btn {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    .delete-btn:hover {
+      background-color: #e0a800;
+    }
+
+    /* Navbar & Footer */
+    #nav {
+      background-color: #2c005f;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #list {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    #list li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #footer {
+      background-color: #111827;
+      color: white;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-container div {
+      margin: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div id="container">
+
+  <!-- Navbar -->
+  <nav id="nav">
+    <div>
+      <img src="images/logo.png" alt="Logo" height="40px">
+    </div>
+    <ul id="list">
+      <li><a href="staff.html">Dashboard</a></li>
+      <!-- <li><a href="loan-requests.html">Loan Requests</a></li> -->
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <h1>Loan Requests</h1>
+
+  <div id="loan-requests">
+    <!-- Loan Requests added dynamically -->
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div>
+        <h3>Navigation</h3>
+        <p>Dashboard<br>About Us<br>Contact</p>
+      </div>
+      <div>
+        <h3>Head Office</h3>
+        <p>1234 Finance Street, Mumbai, India<br>Contact: +91 4564637282</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>YouTube, Instagram, Facebook</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const loanRequests = [
+    { name: "Aman Verma", phone: "9876543210", account: "1234567890", property: "House", email: "aman@gmail.com", loanAmount: "₹2,00,000", tenure: "5 years" },
+    { name: "Neha Sinha", phone: "9123456780", account: "2345678901", property: "Plot", email: "neha@gmail.com", loanAmount: "₹1,00,000", tenure: "3 years" },
+    { name: "Rahul Gupta", phone: "9012345678", account: "3456789012", property: "Car", email: "rahul@gmail.com", loanAmount: "₹5,00,000", tenure: "7 years" },
+    { name: "Pooja Mehta", phone: "9324567810", account: "4567890123", property: "Flat", email: "pooja@gmail.com", loanAmount: "₹10,00,000", tenure: "10 years" },
+    { name: "Karan Singh", phone: "9876512340", account: "5678901234", property: "House", email: "karan@gmail.com", loanAmount: "₹15,00,000", tenure: "15 years" },
+    { name: "Alok Kumar", phone: "9223456789", account: "6789012345", property: "Apartment", email: "alok@gmail.com", loanAmount: "₹8,00,000", tenure: "6 years" },
+    { name: "Rita Sharma", phone: "9034567890", account: "7890123456", property: "House", email: "rita@gmail.com", loanAmount: "₹12,00,000", tenure: "10 years" },
+    { name: "Vikram Jain", phone: "9109876543", account: "8901234567", property: "Farm", email: "vikram@gmail.com", loanAmount: "₹7,00,000", tenure: "8 years" },
+    { name: "Priya Patel", phone: "9012378456", account: "9012345678", property: "Land", email: "priya@gmail.com", loanAmount: "₹4,00,000", tenure: "5 years" },
+    { name: "Rajesh Rao", phone: "9786543210", account: "1230987654", property: "Shop", email: "rajesh@gmail.com", loanAmount: "₹20,00,000", tenure: "12 years" },
+  ];
+
+  const requestsContainer = document.getElementById('loan-requests');
+
+  loanRequests.forEach((req, index) => {
+    const card = document.createElement('div');
+    card.className = 'loan-card';
+    card.id = `card-${index}`;
+    card.innerHTML = `
+      <div class="loan-details">
+        <p><strong>Name:</strong> ${req.name}</p>
+        <p><strong>Phone:</strong> ${req.phone}</p>
+        <p><strong>Account Number:</strong> ${req.account}</p>
+        <p><strong>Property:</strong> ${req.property}</p>
+        <p><strong>Email:</strong> ${req.email}</p>
+        <p><strong>Loan Amount:</strong> ${req.loanAmount}</p>
+        <p><strong>Tenure:</strong> ${req.tenure}</p>
+      </div>
+      <div class="loan-actions">
+        <button class="accept-btn" onclick="handleDecision('${req.email}', 'accepted')">Accept</button>
+        <button class="reject-btn" onclick="handleDecision('${req.email}', 'rejected')">Reject</button>
+        <button class="delete-btn" onclick="deleteRequest('card-${index}')">Delete Request</button>
+      </div>
+    `;
+    requestsContainer.appendChild(card);
+  });
+
+  function handleDecision(email, decision) {
+    alert(`A mail has been sent to ${email} regarding the ${decision.toUpperCase()} decision.`);
+  }
+
+  function deleteRequest(cardId) {
+    const card = document.getElementById(cardId);
+    if (card) {
+      card.remove();
+      alert('Request deleted successfully!');
+    }
+  }
+</script>
+
+</body>
+</html>

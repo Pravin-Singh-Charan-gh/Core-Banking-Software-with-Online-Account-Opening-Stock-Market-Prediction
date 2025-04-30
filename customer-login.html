@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+      /* Customer Login Form Styling */
+#login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.login-form-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+    <title>FINTEX Customer Login</title>
+</head>
+<body>
+    <div id="container">
+        <nav id="nav">
+            <a href="index.html"><img id="logo" src="images/logo.png" alt="logo"></a>
+            <div id="right-content">
+              <ul id="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li id="login-dropdown">
+                  <span id="login-btn">Login ▼</span>
+                  <ul class="dropdown" id="dropdown-menu">
+                    <li><a href="customer-login.html">Customer Login</a></li>
+                    <li><a href="staff-login.html">Staff Login</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+        <!-- CUSTOMER LOGIN FORM STARTS HERE -->
+        <main id="login-section">
+            <div class="login-form-container">
+                <h2>Customer Login</h2>
+                <form id="customer-login-form">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </div>
+        </main>
+        <p>email : customer1@fintexbank.com</p>
+        <p>passowrd : cust1234</p>
+        <!-- CUSTOMER LOGIN FORM ENDS HERE -->
+
+        <footer id="footer">
+            <div class="footer-container">
+              <!-- Column 1: Navigation Links -->
+              <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="careers.html">Careers</a></li>
+                </ul>
+              </div>
+          
+              <!-- Column 2: Social Media -->
+              <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                  <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                  <li><a href="https://x.com" target="_blank">X</a></li>
+                  <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                  <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
+                </ul>
+              </div>
+          
+              <!-- Column 3: Address and Contact -->
+              <div class="footer-column">
+                <h3>Head Office</h3>
+                <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+                <p>Contact Number: +91 4564637282</p>
+              </div>
+            </div>
+          
+            <!-- Privacy & Policy Link -->
+            <div class="privacy-policy">
+              <a href="policy.html">Privacy & Policy</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="bank.js"></script>
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("customer-login-form");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            const enteredEmail = document.getElementById("email").value;
+            const enteredPassword = document.getElementById("password").value;
+
+            const customer = bankData.customerCredentials.find(cust => cust.email === enteredEmail && cust.password === enteredPassword);
+
+            if (customer) {
+                // Successful login
+                alert("Login successful!");
+                window.location.href = "customer.html"; // Redirect to customer.html
+            } else {
+                // Login failed
+                alert("Invalid email or password. Please try again.");
+            }
+        });
+    }
+});
+
+    </script>
+</body>
+</html>

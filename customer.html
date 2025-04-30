@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Dashboard | FINTEX</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    /* Dashboard Style */
+#dashboard {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+#dashboard h1 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.button-grid button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-grid button:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Style */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <!-- Navbar -->
+  <nav id="nav">
+    <a href="index.html"><img id="logo" src="images/logo.png" alt="logo"></a>
+    <div id="right-content">
+      <ul id="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Customer Dashboard -->
+  <main id="dashboard">
+    <h1>Welcome to FINTEX Customer Dashboard!</h1>
+
+    <div class="button-grid">
+      <button onclick="showBalance()">See Account Balance</button>
+      <button onclick="window.location.href='transaction-history.html'">Transaction History</button>
+      <button onclick="window.location.href='transfer.html'">Transfer Money</button>
+      <button onclick="showQR()">Show QR Code</button>
+      <button onclick="window.location.href='loan-application.html'">Apply for Loan</button>
+      <button onclick="window.location.href='track-repayment.html'">Track Repayment</button>
+      <button onclick="window.location.href='apply-sip.html'">Apply for SIP</button>
+      <button onclick="window.location.href='apply-fd.html'">Apply for FD</button>
+      <button onclick="window.location.href='apply-mf.html'">Apply for Mutual Fund</button>
+      <button onclick="window.location.href='stock-prediction.html'">Stock Prediction</button>
+    </div>
+  </main>
+
+  <!-- Balance Modal -->
+  <div id="balance-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeBalance()">&times;</span>
+      <h2>Your Account Balance</h2>
+      <p id="balance-amount">Loading...</p>
+    </div>
+  </div>
+
+  <!-- QR Code Modal -->
+  <div id="qr-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeQR()">&times;</span>
+      <h2>Your QR Code</h2>
+      <img src="images/qr.png" alt="QR Code" style="width: 200px; height: 200px; margin-top: 20px;">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <ul>
+          <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://x.com" target="_blank">X</a></li>
+          <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Head Office</h3>
+        <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+        <p>Contact Number: +91 4564637282</p>
+      </div>
+    </div>
+    <div class="privacy-policy">
+      <a href="policy.html">Privacy & Policy</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="bank.js"></script>
+<script src="script.js"></script>
+
+<script>
+function showBalance() {
+  document.getElementById("balance-modal").style.display = "block";
+  // Dummy balance logic
+  const loggedInEmail = localStorage.getItem("loggedInCustomer");
+  let balance = "₹0";
+
+  if (loggedInEmail === "customer1@fintexbank.com") {
+    balance = "₹1,50,000";
+  } else {
+    balance = "₹2,75,500";
+  }
+  
+  document.getElementById("balance-amount").innerText = balance;
+}
+
+function closeBalance() {
+  document.getElementById("balance-modal").style.display = "none";
+}
+
+function showQR() {
+  document.getElementById("qr-modal").style.display = "block";
+}
+
+function closeQR() {
+  document.getElementById("qr-modal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apply for Loan | Fintex Bank</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+    }
+
+    nav {
+      background-color: #6c5ce7;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+    }
+
+    nav img {
+      height: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .loan-container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .loan-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2d3436;
+    }
+
+    .loan-container input, .loan-container button {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .loan-container input:focus {
+      outline: none;
+      border-color: #6c5ce7;
+    }
+
+    .loan-container button {
+      background-color: #6c5ce7;
+      color: white;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .loan-container button:hover {
+      background-color: #4834d4;
+    }
+
+    #loan-message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+
+    footer {
+      background-color: #2d3436;
+      color: #dfe6e9;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+
+    footer div h3 {
+      margin-bottom: 15px;
+    }
+
+    footer div ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    footer div ul li {
+      margin-bottom: 10px;
+    }
+
+    footer div ul li a {
+      text-decoration: none;
+      color: #dfe6e9;
+      font-size: 14px;
+    }
+
+    .privacy-policy {
+      text-align: center;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .privacy-policy a {
+      color: #b2bec3;
+      font-size: 14px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <img src="images/logo.png" alt="Fintex Bank">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#">Login ▼</a></li>
+    </ul>
+  </nav>
+
+  <div class="loan-container">
+    <h2>Apply for a Loan</h2>
+    <form id="loanForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="phone" placeholder="Phone Number" required>
+      <input type="text" id="accountNumber" placeholder="Account Number" required>
+      <input type="text" id="property" placeholder="Property (e.g. House, Car)" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="number" id="loanAmount" placeholder="Loan Amount (₹)" required>
+      <input type="number" id="tenure" placeholder="Tenure (Years)" required>
+      <button type="submit">Submit Application</button>
+    </form>
+    <div id="loan-message"></div>
+  </div>
+
+  <footer>
+    <div>
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Follow Us</h3>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">X</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Head Office</h3>
+      <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+      <p>Contact Number: +91 4564637282</p>
+    </div>
+
+    <div class="privacy-policy">
+      <a href="policy.html">Privacy & Policy</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('loanForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      document.getElementById('loan-message').textContent = "Loan Application Submitted Successfully!";
+      document.getElementById('loanForm').reset();
+    });
+  </script>
+
+</body>
+</html>

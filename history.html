@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <title>Prediction History - Fintex Bank</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <style>
+    .history-section {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    }
+    .history-container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0px 8px 24px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+    .history-container h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      color: #003366;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #0077cc;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    #clearHistory {
+      margin-top: 30px;
+      padding: 12px 20px;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #clearHistory:hover {
+      background-color: #b71c1c;
+    }
+  </style>
+</head>
+
+<body>
+
+    <nav id="nav">
+        <a href="index.html"><img id="logo" src="images/logo.png" alt="logo"></a>
+        <div id="right-content">
+          <ul id="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li id="login-dropdown">
+              <span id="login-btn">Login ▼</span>
+              <ul class="dropdown" id="dropdown-menu">
+                <li><a href="customer-login.html">Customer Login</a></li>
+                <li><a href="staff-login.html">Staff Login</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+
+<div class="history-section" data-aos="fade-up">
+  <div class="history-container">
+    <h1>📜 Your Prediction History</h1>
+
+    <table id="historyTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Company</th>
+          <th>Prediction</th>
+          <th>Predicted On</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- History will load here dynamically -->
+      </tbody>
+    </table>
+
+    <div style="margin-top: 30px;">
+        <button id="clearHistory">Clear History</button>
+        <button id="downloadPDF">Download PDF</button>
+      </div>
+  </div>
+</div>
+
+
+
+
+<footer id="footer">
+    <div class="footer-container">
+      <!-- Column 1: Navigation Links -->
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+  
+      <!-- Column 2: Social Media -->
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <ul>
+          <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://x.com" target="_blank">X</a></li>
+          <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
+        </ul>
+      </div>
+  
+      <!-- Column 3: Address and Contact -->
+      <div class="footer-column">
+        <h3>Head Office</h3>
+        <p>1234 Finance Street, Mumbai, Maharashtra, 400001, India</p>
+        <p>Contact Number: +91 4564637282</p>
+      </div>
+    </div>
+  
+    <!-- Privacy & Policy Link -->
+    <div class="privacy-policy">
+      <a href="policy.html">Privacy & Policy</a>
+    </div>
+  </footer>
+
+<!-- Footer (already added by you) -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="script.js"></script>
+
+<script>
+    AOS.init();
+  
+    // Load history from local storage
+    function loadHistory() {
+      const history = JSON.parse(localStorage.getItem('predictionHistory')) || [];
+      const tbody = document.querySelector('#historyTable tbody');
+      tbody.innerHTML = '';
+  
+      if (history.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4">No predictions made yet.</td></tr>';
+        return;
+      }
+  
+      history.forEach((item, index) => {
+        const row = `<tr>
+          <td>${index + 1}</td>
+          <td>${item.company}</td>
+          <td>${item.prediction}</td>
+          <td>${item.date}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+  
+    document.getElementById('clearHistory').addEventListener('click', function() {
+      if (confirm('Are you sure you want to clear the history?')) {
+        localStorage.removeItem('predictionHistory');
+        loadHistory();
+      }
+    });
+  
+    // On page load
+    loadHistory();
+
+    document.getElementById('downloadPDF').addEventListener('click', function() {
+  const element = document.querySelector('.history-container');
+  const opt = {
+    margin:       0.5,
+    filename:     'Prediction-History.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save();
+});
+  </script>
+
+</body>
+</html>
